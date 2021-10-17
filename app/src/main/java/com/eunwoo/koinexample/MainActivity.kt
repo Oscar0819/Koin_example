@@ -28,22 +28,23 @@ class MainActivity : AppCompatActivity() {
             modules(
                     // module 시작
                     module {
-                        // 하나만 생성되고 재활용되는 singleton object 만들기
-                        single { Teacher("teacher-sophia") }
-                        // 매번 새로 생성되는 Factory Object 만들기
-                        factory { Student("student-oscar") }
+//                        // 하나만 생성되고 재활용되는 singleton object 만들기
+//                        single { Teacher("teacher-sophia") }
+//                        // 매번 새로 생성되는 Factory Object 만들기
+//                        factory { Student("student-oscar") }
 //                        single(named("cho")) { Student("student-cho")}
 //                        single(named("kim")) { Student("student-kim") }
+                        single { Student("student-kim") }
+                        single { Teacher("teacher-cho", get()) }
                     }
                     // module 종료
             )
         }        // container 종료
 
-        val teacher: Teacher by inject()
-        val student: Student by inject()
+        val teacherCho: Teacher by inject()
 
-        binding.textViewTeacher.text = teacher.name
-        binding.textViewStudent.text = student.name
+        binding.textViewTeacher.text = teacherCho.name
+        binding.textViewStudent.text = teacherCho.teachingStudent.name
 
     }
 }
